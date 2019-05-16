@@ -7,7 +7,8 @@ import { WeatherComponent } from './components/weather/weather.component';
 import { DatetimeComponent } from './components/datetime/datetime.component';
 import { LinksComponent } from './components/links/links.component';
 import { SearchbarComponent } from './searchbar/searchbar.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { SidebarComponent } from './sidebar/sidebar.component'
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
     WeatherComponent,
     DatetimeComponent,
     LinksComponent,
-    SearchbarComponent
+    SearchbarComponent,
+    SidebarComponent
   ],
   imports: [
     NgbModule,
