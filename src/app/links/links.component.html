@@ -1,0 +1,26 @@
+<div class="grid-container">
+  <div>
+    <div *ngFor="let item of links.socialLinks; let i = index">
+      <p>{{item.name}} @</p>
+      <p><a href="{{item.url}}">{{item.url}}</a></p>
+    </div>
+  </div>
+  <div>
+    <div *ngFor="let item of links.mediaLinks; let i = index">
+      <p>{{item.name}} @</p>
+      <p><a href="{{item.url}}">{{item.url}}</a></p>
+    </div>
+  </div>
+  <div>
+    <div *ngFor="let item of links.productivityLinks; let i = index">
+      <p>{{item.name}} @</p>
+      <p><a href="{{item.url}}">{{item.url}}</a></p>
+    </div>
+  </div>
+  <div>
+    <div *ngFor="let item of links.newsLinks; let i = index">
+      <p>{{item.name}} @</p>
+      <p><a href="{{item.url}}">{{item.url}}</a></p>
+    </div>
+  </div>
+</div>
