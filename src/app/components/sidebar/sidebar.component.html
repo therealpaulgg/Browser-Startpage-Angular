@@ -1,0 +1,39 @@
+<a href="#" class="settings-button" id="sbtn1" (click) = "toggleSidebar()">
+  <h3><i class="fa fa-bars" aria-hidden="true"></i></h3>
+</a>
+
+<div class="sidebar" [ngClass]="{closed : isClosed}" id="sidebar">
+  <p>
+    <a href="#" class="settings-button" (click) = "toggleSidebar()"><i class="fa fa-times" aria-hidden="true"></i></a>
+  </p>
+  <h3>Settings</h3>
+  <hr id="bar">
+
+  <!-- TEMPERATURE RADIO GROUP -->
+  <div class="radio-group">
+
+    <label *ngFor="let item of tempSettings" for="{{item.name}}" class="radio">
+      <input type="radio" [(ngModel)]="tempSetting" name="degreegrp" value="{{item.value}}" id="{{item.name}}" class="hidden" (change)="settingsChange()"/>
+      <span class="label"></span>{{item.name}}
+    </label>
+  </div>
+
+  <!-- BOTH DEGREES TOGGLE-->
+
+  <div class="toggle">
+    <p class="settings-label">Both Degrees</p>
+    <input [(ngModel)]="bothDegrees" type="checkbox" id="bothDegreesToggle" class="cbx hidden" (change)="settingsChange()" />
+    <label for="bothDegreesToggle" class="toggle-btn lbl"></label>
+  </div>
+
+  <!-- THEME RADIO GROUP -->
+
+  <div class="radio-group">
+
+    <label *ngFor="let item of themeSettings" for="{{item.name}}" class="radio">
+      <input type="radio" [(ngModel)]="themeSetting" name="themegrp" value="{{item.value}}" id="{{item.name}}" class="hidden" (change)="settingsChange()" />
+      <span class="label"></span>{{item.name}}
+    </label>
+
+  </div>
+</div>

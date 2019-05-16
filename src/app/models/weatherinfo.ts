@@ -9,7 +9,8 @@ export class WeatherInfo {
     }
     weather: [
         {
-            description: string
+            description: string,
+            id: number
         }
     ]
 }

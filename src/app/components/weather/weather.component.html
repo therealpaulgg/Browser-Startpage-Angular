@@ -1,0 +1,8 @@
+<h2>
+ <span [ngClass]="{hidden: (settings.tempSetting !== 'celsius' && !settings.bothDegrees), secondary: (settings.tempSetting !== 'celsius' && settings.bothDegrees)}" id="celsius">{{celsius}} °C</span>
+ <span [ngClass]="{hidden: !settings.bothDegrees}"id="slash"> / </span>
+ <span [ngClass]="{hidden: (settings.tempSetting !== 'fahrenheit' && !settings.bothDegrees), secondary: (settings.tempSetting !== 'fahrenheit' && settings.bothDegrees)}" id="fahrenheit">{{fahrenheit}} °F</span>
+ <span id="weather-content"> in {{ location }} - {{ description }} 
+     <i class="wi wi-{{iconClass}}"></i>
+</span>
+</h2>
