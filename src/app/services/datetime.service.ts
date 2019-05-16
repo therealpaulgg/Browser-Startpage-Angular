@@ -6,6 +6,7 @@ import { WeatherService } from './weather.service'
 @Injectable({
   providedIn: 'root'
 })
+
 export class DatetimeService {
   private dateTimeSubject = new Subject<any>()
 

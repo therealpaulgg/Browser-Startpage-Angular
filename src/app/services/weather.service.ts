@@ -20,6 +20,7 @@ export class WeatherService {
     description: string
     sunrise: number
     sunset: number
+    id: number
 
     constructor(private http: HttpClient) {
         this.newWeather()
@@ -41,7 +42,8 @@ export class WeatherService {
                 location: this.location,
                 description: this.description,
                 sunrise: this.sunrise,
-                sunset: this.sunset
+                sunset: this.sunset,
+                id: this.id
             }
         )
     }
@@ -55,6 +57,7 @@ export class WeatherService {
             this.description = info.weather[0].description
             this.sunrise = info.sys.sunrise
             this.sunset = info.sys.sunset
+            this.id = info.weather[0].id
             this.next()
         })
     }

@@ -6,15 +6,19 @@ import { AppComponent } from './app.component';
 import { WeatherComponent } from './components/weather/weather.component';
 import { DatetimeComponent } from './components/datetime/datetime.component';
 import { LinksComponent } from './components/links/links.component';
+import { SearchbarComponent } from './searchbar/searchbar.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 
 @NgModule({
   declarations: [
     AppComponent,
     WeatherComponent,
     DatetimeComponent,
-    LinksComponent
+    LinksComponent,
+    SearchbarComponent
   ],
   imports: [
+    NgbModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule
