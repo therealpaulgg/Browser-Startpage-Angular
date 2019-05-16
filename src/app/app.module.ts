@@ -5,12 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { WeatherComponent } from './weather/weather.component';
 import { DatetimeComponent } from './datetime/datetime.component';
+import { LinksComponent } from './links/links.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     WeatherComponent,
-    DatetimeComponent
+    DatetimeComponent,
+    LinksComponent
   ],
   imports: [
     BrowserModule,
