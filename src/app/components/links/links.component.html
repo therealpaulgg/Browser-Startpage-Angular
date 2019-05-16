@@ -1,23 +1,27 @@
 <div class="grid-container">
   <div>
+    <h2>Social Media</h2>
     <div *ngFor="let item of links.socialLinks; let i = index">
       <p>{{item.name}} @</p>
       <p><a href="{{item.url}}">{{item.url}}</a></p>
     </div>
   </div>
   <div>
+    <h2>Media</h2>
     <div *ngFor="let item of links.mediaLinks; let i = index">
       <p>{{item.name}} @</p>
       <p><a href="{{item.url}}">{{item.url}}</a></p>
     </div>
   </div>
   <div>
+    <h2>Productivity</h2>
     <div *ngFor="let item of links.productivityLinks; let i = index">
       <p>{{item.name}} @</p>
       <p><a href="{{item.url}}">{{item.url}}</a></p>
     </div>
   </div>
   <div>
+    <h2>News</h2>
     <div *ngFor="let item of links.newsLinks; let i = index">
       <p>{{item.name}} @</p>
       <p><a href="{{item.url}}">{{item.url}}</a></p>

@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core'
-import { WeatherService } from '../weather.service'
-import { DatetimeService } from '../datetime.service'
+import { WeatherService } from '../../services/weather.service'
+import { DatetimeService } from '../../services/datetime.service'
 import { Subscription } from 'rxjs';
 
 @Component({

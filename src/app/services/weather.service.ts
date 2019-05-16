@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core'
 import { Observable, of } from 'rxjs'
-import { WeatherInfo } from './models/weatherinfo'
-import { LocationInfo } from './models/locationinfo'
+import { WeatherInfo } from '../models/weatherinfo'
+import { LocationInfo } from '../models/locationinfo'
 import { HttpClient } from "@angular/common/http"
 import { mergeMap } from 'rxjs/operators'
 import { Subject } from 'rxjs'

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {DatetimeService} from "../datetime.service"
+import {DatetimeService} from "../../services/datetime.service"
 
 @Component({
     selector: 'app-datetime',

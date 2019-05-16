@@ -3,9 +3,9 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { WeatherComponent } from './weather/weather.component';
-import { DatetimeComponent } from './datetime/datetime.component';
-import { LinksComponent } from './links/links.component';
+import { WeatherComponent } from './components/weather/weather.component';
+import { DatetimeComponent } from './components/datetime/datetime.component';
+import { LinksComponent } from './components/links/links.component';
 
 @NgModule({
   declarations: [
