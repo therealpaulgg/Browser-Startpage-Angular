@@ -27,7 +27,6 @@
               "src/assets"
             ],
             "styles": [
-              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/assets/css/weather-icons.min.css",
               "src/styles.sass"
             ],
@@ -86,7 +85,6 @@
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
             "styles": [
-              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/assets/css/weather-icons.min.css",
               "src/styles.sass"
             ],
