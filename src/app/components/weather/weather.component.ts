@@ -54,4 +54,5 @@ export class WeatherComponent implements OnInit, OnDestroy {
         // cleaning up
         this.weatherSubscription.unsubscribe()
     }
+    
 }

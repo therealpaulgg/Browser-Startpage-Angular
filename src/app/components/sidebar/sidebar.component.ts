@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener, ElementRef } from '@angular/core';
 import { Subscription } from 'rxjs'
 import { SettingsService } from '../../services/settings.service'
 
@@ -7,6 +7,7 @@ import { SettingsService } from '../../services/settings.service'
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.sass']
 })
+
 export class SidebarComponent implements OnInit {
   private subscription: Subscription
   isClosed: boolean
@@ -42,7 +43,14 @@ export class SidebarComponent implements OnInit {
     }
   ]
 
-  constructor(private settingsService: SettingsService) { }
+  constructor(private settingsService: SettingsService, private _eref: ElementRef) { }
+
+  @HostListener('document:click', ['$event'])
+  clickOutside(event: Event) {
+    if (!this._eref.nativeElement.contains(event.target)) {
+      this.isClosed = true
+    }
+  }
 
   ngOnInit() {
     this.isClosed = true

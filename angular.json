@@ -28,6 +28,8 @@
             ],
             "styles": [
               "src/assets/css/weather-icons.min.css",
+              "src/assets/css/normalize.css",
+              "src/assets/css/skeleton.css",
               "src/styles.sass"
             ],
             "scripts": [],
