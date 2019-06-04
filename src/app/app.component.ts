@@ -13,13 +13,19 @@ export class AppComponent implements OnInit {
     themeSetting: string
     weatherLoaded: boolean
     timeLoaded: boolean
+    headerMessage: string
 
-    constructor(private settingsService: SettingsService, private weatherService: WeatherService, private datetimeService: DatetimeService) { }
+    constructor(
+        private settingsService: SettingsService, 
+        private weatherService: WeatherService, 
+        private datetimeService: DatetimeService
+        ) { }
 
     ngOnInit() {
         this.settingsService.getSettings().subscribe(obj => {
-            console.log(obj.themeSetting)
+            console.log(obj.headerMessage)
             this.themeSetting = obj.themeSetting
+            this.headerMessage = obj.headerMessage
         })
 
         // This is for telling the app that it is loaded.

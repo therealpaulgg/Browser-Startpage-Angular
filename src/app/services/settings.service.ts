@@ -1,7 +1,7 @@
 import { Injectable, Inject } from '@angular/core';
-import { Observable, BehaviorSubject } from 'rxjs'
-import { SettingsInfo } from '../models/settingsinfo'
+import { BehaviorSubject } from 'rxjs'
 import { LOCAL_STORAGE, WebStorageService } from 'angular-webstorage-service';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -14,19 +14,34 @@ export class SettingsService {
   bothDegrees: boolean
   themeSetting: string
   newTab: boolean
+  key: string
+  searchEngine: string
+  headerMessage: string
 
-  constructor(@Inject(LOCAL_STORAGE) private storage: WebStorageService) {
+  constructor(@Inject(LOCAL_STORAGE) private storage: WebStorageService, private http: HttpClient) {
     this.tempSetting = this.storage.get("tempSetting") ? this.storage.get("tempSetting") : "celsius"
     this.themeSetting = this.storage.get("themeSetting") ? this.storage.get("themeSetting") : "dark" 
     this.bothDegrees = this.storage.get("bothDegrees") ? this.storage.get("bothDegrees") : false 
     this.newTab = this.storage.get("newTab") ? this.storage.get("newTab") : false
     
+    this.http.get<any>("assets/config/config.json").subscribe(obj => {
+        this.headerMessage = obj.headerMessage
+        this.key = obj.key
+        this.searchEngine = obj.searchEngine
+        this.next()
+    })
+
     this.subject = new BehaviorSubject<any>({
       tempSetting: this.tempSetting,
       bothDegrees: this.bothDegrees,
       newTab: this.newTab,
-      themeSetting: this.themeSetting
+      themeSetting: this.themeSetting,
+      headerMessage: this.headerMessage, 
+      key: this.key,
+      searchEngine: this.searchEngine 
     })
+
+
   }
   // Settings are loaded from user's cookies (worry about this later)
   // Default settings are: celsius, both degrees off, and dark mode
@@ -50,7 +65,10 @@ export class SettingsService {
       tempSetting: this.tempSetting,
       bothDegrees: this.bothDegrees,
       themeSetting: this.themeSetting,
-      newTab: this.newTab
+      newTab: this.newTab,
+      headerMessage: this.headerMessage, 
+      key: this.key,
+      searchEngine: this.searchEngine 
     })
   }
 

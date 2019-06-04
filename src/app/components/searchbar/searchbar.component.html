@@ -4,7 +4,7 @@
     https://angular.io/api/forms/NgForm
 -->
 
-<form action="https://duckduckgo.com/" method="get" [attr.target]="newTab ? '_blank' : '_self'" ngNoForm>
+<form [action]="searchEngine" method="get" [attr.target]="newTab ? '_blank' : '_self'" ngNoForm>
     <div class="container input-group">
         <input autocomplete="off" class="search-bar"
             [ngClass]="{dark: themeSetting == 'dark', light: themeSetting == 'light', dracula: themeSetting == 'dracula'}"

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { SettingsService } from 'src/app/services/settings.service';
-import { NgForm } from '@angular/forms';
 
 @Component({
     selector: 'app-searchbar',
@@ -11,6 +10,7 @@ import { NgForm } from '@angular/forms';
 export class SearchbarComponent implements OnInit {
     themeSetting: string
     newTab: boolean
+    searchEngine: string
     
     constructor(private settingsService: SettingsService) { }
 
@@ -18,12 +18,7 @@ export class SearchbarComponent implements OnInit {
         this.settingsService.getSettings().subscribe(obj => {
             this.themeSetting = obj.themeSetting
             this.newTab = obj.newTab
+            this.searchEngine = obj.searchEngine
         })
-        this.test()
-    }
-
-    test() {
-        console.log(this.newTab)
-        setTimeout(this.test, 1000)
     }
 }

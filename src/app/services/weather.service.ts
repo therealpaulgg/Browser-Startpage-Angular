@@ -5,6 +5,7 @@ import { LocationInfo } from '../models/locationinfo'
 import { HttpClient } from "@angular/common/http"
 import { mergeMap, map } from 'rxjs/operators'
 import { Subject } from 'rxjs'
+import { SettingsService } from './settings.service';
 
 @Injectable({
     providedIn: 'root'
@@ -22,7 +23,7 @@ export class WeatherService {
     sunset: number
     id: number
 
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient, private settingsService: SettingsService) {
         this.subject = new BehaviorSubject<any>({})
         this.newWeather()
     }
@@ -53,10 +54,10 @@ export class WeatherService {
         return this.http.get<LocationInfo>(this.locationUrl).pipe(
             mergeMap(
                 // this is needed to get the configuration api key from the json file.
-                locationStuff => this.http.get<any>("assets/config/key.json").pipe(
-                    mergeMap(config => {
+                locationStuff => this.settingsService.getSettings().pipe(
+                    mergeMap(settings => {
                         // finally, we can make the call to the weather API.
-                        return this.http.get<WeatherInfo>(`https://api.openweathermap.org/data/2.5/weather?zip=${locationStuff.postal},${locationStuff.country_code}&units=metric&APPID=${config.key}`)
+                        return this.http.get<WeatherInfo>(`https://api.openweathermap.org/data/2.5/weather?zip=${locationStuff.postal},${locationStuff.country_code}&units=metric&APPID=${settings.key}`)
                     }
                     )
                 )

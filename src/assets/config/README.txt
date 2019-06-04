@@ -3,3 +3,7 @@ change the key in key.json to what you need.
 
 The reason you need your own API key is because the OpenWeatherMap has a limited amount of API calls that can be performed in a time period, and I 
 do not want to get my API key banned. 
+
+I know the following two search engines work (use these URLS):
+https://duckduckgo.com
+https://google.com/search
