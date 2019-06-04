@@ -8,6 +8,8 @@
 
 It is recommended to download the project from the releases section and host it yourself or use local files on your computer.
 
+Demo website: [https://s.paul.systems](https://s.paul.systems) 
+
 ## Configuration
 
 All configuration files are in assets/config. Edit links.json (in the right format) to edit the links and categories, and edit config.json for the API key to be changed,
