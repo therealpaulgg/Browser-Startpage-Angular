@@ -3,7 +3,7 @@ import { Observable, of, BehaviorSubject } from 'rxjs'
 import { WeatherInfo } from '../models/weatherinfo'
 import { LocationInfo } from '../models/locationinfo'
 import { HttpClient } from "@angular/common/http"
-import { mergeMap } from 'rxjs/operators'
+import { mergeMap, map } from 'rxjs/operators'
 import { Subject } from 'rxjs'
 
 @Injectable({
@@ -26,12 +26,41 @@ export class WeatherService {
         this.subject = new BehaviorSubject<any>({})
         this.newWeather()
     }
-    
-    private getAPIObservable() : Observable<WeatherInfo> {
+
+    test() {
+        const source = of('Hello');
+        //mergeMap also emits result of promise
+        const myPromise = val =>
+            new Promise(resolve => resolve(`${val} World From Promise!`));
+        const example = source.pipe(
+            mergeMap(
+                val => myPromise(val),
+                (valueFromSource, valueFromPromise) => {
+                    return `Source: ${valueFromSource}, Promise: ${valueFromPromise}`;
+                }
+            )
+        );
+
+    }
+
+    private getAPIObservable(): Observable<WeatherInfo> {
         // This is code for taking output of one API call and using its data in a second API call.
         // Code from: https://coryrylan.com/blog/angular-multiple-http-requests-with-rxjs
+
+        // I ... edited it a bit. This is terrible.
+
+        // Need to get location info first, pipe that to the next
         return this.http.get<LocationInfo>(this.locationUrl).pipe(
-            mergeMap(locationStuff => this.http.get<WeatherInfo>(`https://api.openweathermap.org/data/2.5/weather?zip=${locationStuff.postal},${locationStuff.country_code}&units=metric&APPID=9ec985f43b7fc537d4ab3d4953fb50ed`))
+            mergeMap(
+                // this is needed to get the configuration api key from the json file.
+                locationStuff => this.http.get<any>("assets/config/key.json").pipe(
+                    mergeMap(config => {
+                        // finally, we can make the call to the weather API.
+                        return this.http.get<WeatherInfo>(`https://api.openweathermap.org/data/2.5/weather?zip=${locationStuff.postal},${locationStuff.country_code}&units=metric&APPID=${config.key}`)
+                    }
+                    )
+                )
+            )
         )
     }
 
@@ -50,6 +79,7 @@ export class WeatherService {
     }
 
     public newWeather() {
+        // Ask me how much I care about nested observables right now. Zip. Nada. Zero.
         this.getAPIObservable().subscribe(info => {
             this.celsius = info.main.temp
             this.fahrenheit = (this.celsius * (9 / 5) + 32).toFixed(2)
