@@ -1,27 +1,32 @@
 # Startpage
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.9.
+![GitHub release](https://img.shields.io/github/release-pre/PaulGG/Browser-Startpage-Angular.svg)
+![GitHub last commit](https://img.shields.io/github/last-commit/PaulGG/Browser-Startpage-Angular.svg)
+![Website](https://img.shields.io/website/https/s.paul.systems.svg)
 
-## Development server
+![image](https://imgur.com/TnIvX9o.png)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+It is recommended to download the project from the releases section and host it yourself or use local files on your computer.
 
-## Code scaffolding
+## Configuration
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+All configuration files are in assets/config. Edit links.json (in the right format) to edit the links and categories, and edit config.json for the API key to be changed,
+header message, etc. 
 
 ## Build
 
+The recommended versions of the project are build under releases. However, you can do this if you want to build it yourself.
+
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
-## Running unit tests
+## Angular
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.9. (now running angular 8.0.1)
 
-## Running end-to-end tests
+## Development server
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Dependencies must be installed after cloning with `npm install`.  
 
-## Further help
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
