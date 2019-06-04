@@ -1,15 +1,18 @@
 import { Component, OnInit } from '@angular/core';
+import { SettingsService } from 'src/app/services/settings.service';
 
 @Component({
-  selector: 'app-searchbar',
-  templateUrl: './searchbar.component.html',
-  styleUrls: ['./searchbar.component.sass']
+    selector: 'app-searchbar',
+    templateUrl: './searchbar.component.html',
+    styleUrls: ['./searchbar.component.sass']
 })
 export class SearchbarComponent implements OnInit {
+    themeSetting: string
 
-  constructor() { }
+    constructor(private settingsService: SettingsService) { }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+        this.settingsService.getSettings().subscribe(obj => this.themeSetting = obj.themeSetting)  
+    }
 
 }

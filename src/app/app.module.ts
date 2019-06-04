@@ -10,6 +10,7 @@ import { SearchbarComponent } from './components/searchbar/searchbar.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SidebarComponent } from './components/sidebar/sidebar.component'
 import { FormsModule } from '@angular/forms';
+import { StorageServiceModule } from 'angular-webstorage-service'
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { FormsModule } from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    StorageServiceModule
   ],
   providers: [],
   bootstrap: [AppComponent]

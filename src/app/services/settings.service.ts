@@ -1,6 +1,7 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs'
 import { SettingsInfo } from '../models/settingsinfo'
+import { LOCAL_STORAGE, WebStorageService } from 'angular-webstorage-service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,10 +14,12 @@ export class SettingsService {
   bothDegrees: boolean
   themeSetting: string
 
-  constructor() { 
-    this.tempSetting = "celsius"
-    this.themeSetting = "dark"
-    this.bothDegrees = false
+  constructor(@Inject(LOCAL_STORAGE) private storage: WebStorageService) {
+    // lmao
+
+    this.tempSetting = this.storage.get("tempSetting") ? this.storage.get("tempSetting") : "celsius"
+    this.themeSetting = this.storage.get("themeSetting") ? this.storage.get("themeSetting") : "dark" 
+    this.bothDegrees = this.storage.get("bothDegrees") ? this.storage.get("bothDegrees") : false 
     
     this.subject = new BehaviorSubject<any>({
       tempSetting: this.tempSetting,
@@ -62,6 +65,9 @@ export class SettingsService {
     this.tempSetting = tempSetting
     this.bothDegrees = bothDegrees
     this.themeSetting = themeSetting
+    this.storage.set("tempSetting", tempSetting)
+    this.storage.set("bothDegrees", bothDegrees)
+    this.storage.set("themeSetting", themeSetting)
     this.next()
   }
 }

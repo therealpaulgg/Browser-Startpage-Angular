@@ -1,18 +1,19 @@
-<div class="jumbotron">
-  <app-sidebar></app-sidebar>
-  <div class="container">
-    <div class="centerme">
-      <h1>
-        Hello There
-      </h1>
-      <br>
-      <app-weather-display></app-weather-display>
-      <app-datetime></app-datetime>
-      <app-searchbar></app-searchbar>
-      <br>
-      <app-links></app-links>
+<div class="jumbotron jumbotron-fluid"
+    [ngClass]="{'dark' : themeSetting == 'dark', 'light' : themeSetting == 'light', 'dracula': themeSetting == 'dracula'}">
+    <app-sidebar></app-sidebar>
+    <div class="container">
+        <div class="centerme">
+            <h1>
+                Hello There
+            </h1>
+            <br>
+            <app-weather-display></app-weather-display>
+            <app-datetime></app-datetime>
+            <app-searchbar></app-searchbar>
+            <br>
+            <app-links></app-links>
+        </div>
     </div>
-  </div>
 </div>
 
 
