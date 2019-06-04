@@ -1,0 +1,62 @@
+[
+    {
+        "title": "Social Media",
+        "color": "#ff50d3",
+        "data": [
+            {
+                "name": "Twitter",
+                "url": "https://twitter.com"
+            },
+            {
+                "name": "Reddit",
+                "url": "https://reddit.com"
+            }
+        ]
+    },
+    {
+        "title": "Media",
+        "color": "#f85d5d",
+        "data" : [
+            {
+                "name": "Plex",
+                "url": "https://plex.tv"
+            },
+            {
+                "name": "Youtube",
+                "url": "https://youtube.com"
+            }
+        ]
+    }, 
+    {
+        "title": "Productivity",
+        "color": "#3adc86",
+        "data": [
+            {
+                "name": "Github",
+                "url": "https://github.com"
+            },
+            {
+                "name": "ToDoIst",
+                "url": "https://todoist.com"
+            },
+            {
+                "name": "Coinlib",
+                "url": "https://coinlib.io"
+            },
+            {
+                "name": "Mint",
+                "url": "https://mint.intuit.com"
+            }
+        ]
+    },
+    {
+        "title": "News",
+        "color": "#00ddfa",
+        "data": [
+            {
+                "name": "Google News",
+                "url": "https://news.google.com"
+            }
+        ]
+    }
+]

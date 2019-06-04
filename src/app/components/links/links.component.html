@@ -1,26 +1,9 @@
-<div class="row" [ngClass]="{light: themeSetting == 'light', dark: themeSetting == 'dark', dracula: themeSetting == 'dracula'}">
-  <div class="col-md">
-    <h4 id="smh">Social Media</h4>
-    <div *ngFor="let item of links.socialLinks; let i = index">
-      <p>{{item.name}} @ <a href="{{item.url}}">{{item.url}}</a></p>
+<div class="row"
+    [ngClass]="{light: themeSetting == 'light', dark: themeSetting == 'dark', dracula: themeSetting == 'dracula'}">
+    <div class="col-md" *ngFor="let item of links; let i = index">
+        <h4 [ngStyle]="{'color' : item.color}">{{item.title}}</h4>
+        <div *ngFor="let foo of item.data; let j = index">
+            <p>{{foo.name}} @ <a href="{{foo.url}}" target="_blank">{{foo.url}}</a></p>
+        </div>
     </div>
-  </div>
-  <div class="col-md">
-    <h4 id="mh">Media</h4>
-    <div *ngFor="let item of links.mediaLinks; let i = index">
-    <p>{{item.name}} @ <a href="{{item.url}}">{{item.url}}</a></p>
-    </div>
-  </div>
-  <div class="col-md">
-    <h4 id="ph">Productivity</h4>
-    <div *ngFor="let item of links.productivityLinks; let i = index">
-    <p>{{item.name}} @ <a href="{{item.url}}">{{item.url}}</a></p>
-    </div>
-  </div>
-  <div class="col-md">
-    <h4 id="nh">News</h4>
-    <div *ngFor="let item of links.newsLinks; let i = index">
-    <p>{{item.name}} @ <a href="{{item.url}}">{{item.url}}</a></p>
-    </div>
-  </div>
 </div>

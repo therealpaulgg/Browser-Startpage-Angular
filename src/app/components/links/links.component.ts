@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Links } from "../../links"
 import { SettingsService } from 'src/app/services/settings.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-links',
@@ -8,12 +8,13 @@ import { SettingsService } from 'src/app/services/settings.service';
   styleUrls: ['./links.component.sass']
 })
 export class LinksComponent implements OnInit {
-  links = new Links()
+  links: any
   themeSetting: string
-  constructor(private settingsService: SettingsService) { }
+  constructor(private settingsService: SettingsService, private http: HttpClient) { }
 
   ngOnInit() {
     this.settingsService.getSettings().subscribe(obj => this.themeSetting = obj.themeSetting)
+    this.http.get("assets/  config/links.json").subscribe(obj => this.links = obj)
   }
 
 }

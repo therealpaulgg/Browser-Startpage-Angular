@@ -1,4 +1,10 @@
-<form action="https://duckduckgo.com/" method="get" target="_blank">
+<!-- 
+    after searching for a while, turns out angular by default uses its own form validation.
+    To disable this, ngNoForm is used.
+    https://angular.io/api/forms/NgForm
+-->
+
+<form action="https://duckduckgo.com/" method="get" target="_blank" ngNoForm>
     <div class="container input-group">
         <input autocomplete="off" class="search-bar"
             [ngClass]="{dark: themeSetting == 'dark', light: themeSetting == 'light', dracula: themeSetting == 'dracula'}"
