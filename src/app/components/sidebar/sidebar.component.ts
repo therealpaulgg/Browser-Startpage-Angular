@@ -25,7 +25,7 @@ export class SidebarComponent implements OnInit {
   ] 
 
   bothDegrees: boolean
-  
+  newTab: boolean
   
   themeSetting: string
   themeSettings = [
@@ -57,6 +57,7 @@ export class SidebarComponent implements OnInit {
     this.subscription = this.settingsService.getSettings().subscribe(settings => {
       this.tempSetting = settings.tempSetting
       this.bothDegrees = settings.bothDegrees
+      this.newTab = settings.newTab
       this.themeSetting = settings.themeSetting
     })
   }
@@ -66,8 +67,8 @@ export class SidebarComponent implements OnInit {
   }
 
   settingsChange() {
-    this.settingsService.updateSettings(this.tempSetting, this.bothDegrees, this.themeSetting)
-    
+    console.log(`newtab: ${this.newTab}`)
+    this.settingsService.updateSettings(this.tempSetting, this.bothDegrees, this.themeSetting, this.newTab)
   }
 
 }

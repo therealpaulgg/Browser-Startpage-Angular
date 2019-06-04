@@ -13,17 +13,18 @@ export class SettingsService {
   tempSetting: string
   bothDegrees: boolean
   themeSetting: string
+  newTab: boolean
 
   constructor(@Inject(LOCAL_STORAGE) private storage: WebStorageService) {
-    // lmao
-
     this.tempSetting = this.storage.get("tempSetting") ? this.storage.get("tempSetting") : "celsius"
     this.themeSetting = this.storage.get("themeSetting") ? this.storage.get("themeSetting") : "dark" 
     this.bothDegrees = this.storage.get("bothDegrees") ? this.storage.get("bothDegrees") : false 
+    this.newTab = this.storage.get("newTab") ? this.storage.get("newTab") : false
     
     this.subject = new BehaviorSubject<any>({
       tempSetting: this.tempSetting,
       bothDegrees: this.bothDegrees,
+      newTab: this.newTab,
       themeSetting: this.themeSetting
     })
   }
@@ -48,17 +49,20 @@ export class SettingsService {
     this.subject.next({
       tempSetting: this.tempSetting,
       bothDegrees: this.bothDegrees,
-      themeSetting: this.themeSetting
+      themeSetting: this.themeSetting,
+      newTab: this.newTab
     })
   }
 
-  updateSettings(tempSetting, bothDegrees, themeSetting) {
+  updateSettings(tempSetting, bothDegrees, themeSetting, newTab) {
     this.tempSetting = tempSetting
     this.bothDegrees = bothDegrees
+    this.newTab = newTab
     this.themeSetting = themeSetting
     this.storage.set("tempSetting", tempSetting)
     this.storage.set("bothDegrees", bothDegrees)
     this.storage.set("themeSetting", themeSetting)
+    this.storage.set("newTab", newTab)
     this.next()
   }
 }

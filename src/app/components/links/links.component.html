@@ -3,7 +3,9 @@
     <div class="col-md" *ngFor="let item of links; let i = index">
         <h4 [ngStyle]="{'color' : item.color}">{{item.title}}</h4>
         <div *ngFor="let foo of item.data; let j = index">
-            <p>{{foo.name}} @ <a href="{{foo.url}}" target="_blank">{{foo.url}}</a></p>
+            <p>{{foo.name}} @
+                <a href="{{foo.url}}" [attr.target]="newTab ? '_blank' : '_self'">{{foo.url}}</a>
+            </p>
         </div>
     </div>
 </div>

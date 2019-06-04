@@ -24,14 +24,23 @@
 
     <!-- BOTH DEGREES TOGGLE-->
 
-
-
     <div class="toggle">
         <p class="settings-label">Both Degrees</p>
         <input [(ngModel)]="bothDegrees" type="checkbox" class="cbx hidden" id="bothDegreesToggle"
             (change)="settingsChange()" />
         <label for="bothDegreesToggle" class="toggle-btn lbl"></label>
     </div>
+
+    <!-- OPEN LINKS IN NEW TAB-->
+
+    <div class="toggle">
+        <p class="settings-label">New Tab URLs</p>
+        <input [(ngModel)]="newTab" type="checkbox" class="cbx hidden" id="newTabToggle"
+            (change)="settingsChange()" />
+        <label for="newTabToggle" class="toggle-btn lbl"></label>
+    </div>
+
+
 
     <!-- THEME RADIO GROUP -->
 

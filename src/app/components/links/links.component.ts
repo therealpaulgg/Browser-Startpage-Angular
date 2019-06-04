@@ -10,11 +10,15 @@ import { HttpClient } from '@angular/common/http';
 export class LinksComponent implements OnInit {
   links: any
   themeSetting: string
+  newTab: boolean
   constructor(private settingsService: SettingsService, private http: HttpClient) { }
 
   ngOnInit() {
-    this.settingsService.getSettings().subscribe(obj => this.themeSetting = obj.themeSetting)
-    this.http.get("assets/  config/links.json").subscribe(obj => this.links = obj)
+    this.settingsService.getSettings().subscribe(obj => {
+        this.themeSetting = obj.themeSetting
+        this.newTab = obj.newTab
+    })
+    this.http.get("assets/config/links.json").subscribe(obj => this.links = obj)
   }
 
 }
