@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs'
+import { Observable, of, BehaviorSubject } from 'rxjs'
 import { Subject } from 'rxjs'
 import { WeatherService } from './weather.service'
 
@@ -26,6 +26,7 @@ export class DatetimeService {
     })
     // Must update every 10 minutes.
     this.tenMinuteWeatherUpdate()
+    this.dateTimeSubject = new BehaviorSubject<any>({})
   }
 
   tenMinuteWeatherUpdate() {

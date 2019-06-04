@@ -44,15 +44,6 @@ export class SettingsService {
     return this.subject.asObservable()
   }
 
-  keepGettingNext() {
-    this.next()
-    setTimeout(() => {
-      this.keepGettingNext()
-    }, 
-    2000
-    )
-  }
-
   next() {
     this.subject.next({
       tempSetting: this.tempSetting,

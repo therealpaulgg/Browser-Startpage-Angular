@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core'
-import { Observable, of } from 'rxjs'
+import { Observable, of, BehaviorSubject } from 'rxjs'
 import { WeatherInfo } from '../models/weatherinfo'
 import { LocationInfo } from '../models/locationinfo'
 import { HttpClient } from "@angular/common/http"
@@ -23,6 +23,7 @@ export class WeatherService {
     id: number
 
     constructor(private http: HttpClient) {
+        this.subject = new BehaviorSubject<any>({})
         this.newWeather()
     }
     

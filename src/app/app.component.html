@@ -3,15 +3,20 @@
     <app-sidebar></app-sidebar>
     <div class="container">
         <div class="centerme">
-            <h1>
-                Hello There
-            </h1>
-            <br>
-            <app-weather-display></app-weather-display>
-            <app-datetime></app-datetime>
-            <app-searchbar></app-searchbar>
-            <br>
-            <app-links></app-links>
+            <div *ngIf="weatherLoaded == true && timeLoaded == true; else loading">
+                <h1>
+                    Hello There
+                </h1>
+                <br>
+                <app-weather-display></app-weather-display>
+                <app-datetime></app-datetime>
+                <app-searchbar></app-searchbar>
+                <br>
+                <app-links></app-links>
+            </div>
+            <ng-template #loading>
+                <h1>Loading...</h1>
+            </ng-template>
         </div>
     </div>
 </div>
