@@ -1,4 +1,16 @@
-<div #myMap style="width: 100%; height: 500px;"></div>
+<div style="width: 100%; height: 500px;">
+  <x-map #xmap [Options]="_options" [(Box)]="_box" (MapPromise)="_processMapPromise($event)">
+    <x-map-marker *ngIf="userLocation" [Latitude]="userLocation.latitude" [Longitude]="userLocation.longitude" [Title]="'Your Location'" [IconInfo]="iconInfo">
+    </x-map-marker>
+    <x-map-marker *ngFor="let place of places; let i=index" [Latitude]="place.latitude" [Longitude]="place.longitude" [Title]="place.name" [IconInfo]="iconInfo">
+      <x-info-box [DisableAutoPan]="true" [Title]="place.name" [Description]="place.description">
+        <x-info-box-action [Label]="'Click Me'" (ActionClicked)="_click(i)"></x-info-box-action>
+      </x-info-box>
+    </x-map-marker>
+  </x-map>
+</div>
+
+
 <form (ngSubmit)="onSubmit()" #mapSearchForm="ngForm">
   <div style="padding-top: 10px; padding-bottom: 10px;" class="input-group">
     <input required autocomplete="off" class="form-control search-bar"
@@ -11,6 +23,8 @@
     </span>
   </div>
 </form>
+
+
 <div *ngIf="places">
   <h3>Results</h3>
 </div>

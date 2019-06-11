@@ -11,7 +11,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SidebarComponent } from './components/sidebar/sidebar.component'
 import { FormsModule } from '@angular/forms';
 import { StorageServiceModule } from 'angular-webstorage-service';
-import { MapComponent } from './components/map/map.component'
+import { MapComponent } from './components/map/map.component';
+import { MapModule, MapAPILoader, BingMapAPILoaderConfig, BingMapAPILoader, WindowRef, DocumentRef } from "angular-maps";
 
 @NgModule({
   declarations: [
@@ -29,9 +30,27 @@ import { MapComponent } from './components/map/map.component'
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    StorageServiceModule
+    StorageServiceModule,
+    MapModule.forRootBing()
   ],
-  providers: [],
+  providers: [
+    {
+      provide: MapAPILoader, deps: [], useFactory: BingMapServiceProviderFactory
+    }
+  ],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }
+
+export function BingMapServiceProviderFactory(){
+  let bc: BingMapAPILoaderConfig = new BingMapAPILoaderConfig();
+  bc.apiKey ="AmPeldhwmA9rt7hVuJZAb5eSnJmiU-YJxxw8QDoyhyVZBghurkl6NOHHcfrPT0y0";
+    // replace with your bing map key
+    // the usage of this key outside this plunker is illegal.
+  bc.branch = "experimental";
+    // to use the experimental bing brach. There are some bug fixes for
+    // clustering in that branch you will need if you want to use
+    // clustering.
+  return new BingMapAPILoader(bc, new WindowRef(), new DocumentRef());
+}
