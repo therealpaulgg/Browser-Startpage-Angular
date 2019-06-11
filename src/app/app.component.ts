@@ -14,10 +14,11 @@ export class AppComponent implements OnInit {
     weatherLoaded: boolean
     timeLoaded: boolean
     headerMessage: string
+    isNavbarCollapsed: boolean = true
 
     constructor(
-        private settingsService: SettingsService, 
-        private weatherService: WeatherService, 
+        private settingsService: SettingsService,
+        private weatherService: WeatherService,
         private datetimeService: DatetimeService
         ) { }
 

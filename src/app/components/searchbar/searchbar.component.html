@@ -1,13 +1,18 @@
-<!-- 
+<!--
     after searching for a while, turns out angular by default uses its own form validation.
     To disable this, ngNoForm is used.
     https://angular.io/api/forms/NgForm
 -->
 
 <form [action]="searchEngine" method="get" [attr.target]="newTab ? '_blank' : '_self'" ngNoForm>
-    <div class="container input-group">
-        <input autocomplete="off" class="search-bar"
-            [ngClass]="{dark: themeSetting == 'dark', light: themeSetting == 'light', dracula: themeSetting == 'dracula'}"
-            name="q" placeholder="search the web" type="text">
-    </div>
+  <div class="input-group">
+    <input autocomplete="off" class="form-control search-bar"
+      [ngClass]="{dark: themeSetting == 'dark', light: themeSetting == 'light', dracula: themeSetting == 'dracula'}"
+      name="q" placeholder="search the web" type="searchEngine" [(ngModel)]="searchInput">
+    <span class="input-group-btn">
+      <button type="submit" class="btn"
+        [ngClass]="{dark: themeSetting == 'dark', light: themeSetting == 'light', dracula: themeSetting == 'dracula'}"
+          [disabled]="!searchInput">Submit</button>
+    </span>
+  </div>
 </form>
