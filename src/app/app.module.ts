@@ -12,6 +12,32 @@ import { SidebarComponent } from './components/sidebar/sidebar.component'
 import { FormsModule } from '@angular/forms';
 import { StorageServiceModule } from 'angular-webstorage-service';
 import { MapComponent } from './components/map/map.component'
+import { RouteReuseStrategy, DetachedRouteHandle } from '@angular/router';
+
+// Credit to this post for this solution
+// https://www.softwarearchitekt.at/post/2016/12/02/sticky-routes-in-angular-2-3-with-routereusestrategy.aspx
+
+export class CustomReuseStrategy implements RouteReuseStrategy {
+
+  handlers: {[key: string]: DetachedRouteHandle} = {}
+
+  shouldDetach(route: import("@angular/router").ActivatedRouteSnapshot): boolean {
+    return true
+  }
+  store(route: import("@angular/router").ActivatedRouteSnapshot, handle: import("@angular/router").DetachedRouteHandle): void {
+    this.handlers[route.routeConfig.path] = handle
+  }
+  shouldAttach(route: import("@angular/router").ActivatedRouteSnapshot): boolean {
+    return !!route.routeConfig && !!this.handlers[route.routeConfig.path]
+  }
+  retrieve(route: import("@angular/router").ActivatedRouteSnapshot): import("@angular/router").DetachedRouteHandle {
+    if (!route.routeConfig) return null
+    return this.handlers[route.routeConfig.path]
+  }
+  shouldReuseRoute(future: import("@angular/router").ActivatedRouteSnapshot, curr: import("@angular/router").ActivatedRouteSnapshot): boolean {
+    return future.routeConfig === curr.routeConfig
+  }
+}
 
 @NgModule({
   declarations: [
@@ -32,7 +58,11 @@ import { MapComponent } from './components/map/map.component'
     StorageServiceModule,
     HttpClientJsonpModule
   ],
-  providers: [],
+  providers: [
+    {provide: RouteReuseStrategy, useClass: CustomReuseStrategy}
+  ],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }
+
