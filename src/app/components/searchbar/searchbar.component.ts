@@ -11,7 +11,8 @@ export class SearchbarComponent implements OnInit {
     themeSetting: string
     newTab: boolean
     searchEngine: string
-    
+    searchInput: string
+
     constructor(private settingsService: SettingsService) { }
 
     ngOnInit() {
