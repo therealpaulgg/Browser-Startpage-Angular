@@ -75,7 +75,7 @@ export class MapComponent implements OnInit {
 
       } else {
         place.Address.addressLine = place.Address.addressLine.replace(/\./g, '')
-        let stuff = await fetch(`http://dev.virtualearth.net/REST/v1/Locations/US/${place.Address.adminDistrict}/${place.Address.postalCode}/${place.Address.locality}/${encodeURIComponent(place.Address.addressLine)}?maxResults=1&key=${this.bingAPIKey}`)
+        let stuff = await fetch(`https://dev.virtualearth.net/REST/v1/Locations/US/${place.Address.adminDistrict}/${place.Address.postalCode}/${place.Address.locality}/${encodeURIComponent(place.Address.addressLine)}?maxResults=1&key=${this.bingAPIKey}`)
           .then(res => res.json())
         coords = stuff.resourceSets[0].resources[0].geocodePoints[0].coordinates
         location = new Microsoft.Maps.Location(coords[0], coords[1])
