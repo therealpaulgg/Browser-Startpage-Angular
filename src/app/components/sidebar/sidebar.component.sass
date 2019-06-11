@@ -1,6 +1,6 @@
 .sidebar
     visibility: visible
-    position: absolute
+    position: fixed
     right: 0px
     top: 0
     width: 200px
@@ -13,8 +13,9 @@
     background-color: rgb(68, 68, 68)
     color: white
 
-a:hover 
+a:hover
     color: #ff33cc
+    cursor: pointer
 
 // Needed for buttons
 
@@ -52,8 +53,8 @@ a.dracula
     visibility: hidden
     right: -200px
 
-.settings-label 
-    float: left 
+.settings-label
+    float: left
 
 .settings-button
     padding: 20px
@@ -68,7 +69,7 @@ a.dracula
 
 /* Code for Toggle: https://www.cssscript.com/material-style-toggle-switches-with-pure-css-css3/ */
 
-.lbl 
+.lbl
     margin-left: 10px
     float: left
     position: relative
@@ -80,7 +81,7 @@ a.dracula
     cursor: pointer
     transition: all 0.3s ease
 
-.lbl:after 
+.lbl:after
     position: absolute
     left: -2px
     top: -3px
@@ -94,24 +95,24 @@ a.dracula
     transition: all 0.3s ease
 
 .lbl:active:after
-    transform: scale(1.15, 0.85) 
+    transform: scale(1.15, 0.85)
 
 .cbx:checked ~ .toggle-btn
-    background: #ff98dd 
+    background: #ff98dd
 
-.cbx:checked ~ .toggle-btn:after 
+.cbx:checked ~ .toggle-btn:after
     left: 20px
     background: #fa30d8
 
-.cbx:disabled ~ .toggle-btn 
+.cbx:disabled ~ .toggle-btn
     background: #d5d5d5
     pointer-events: none
 
 .cbx:disabled ~ .toggle-btn:after
-    background: #bcbdbc 
+    background: #bcbdbc
 
-.hidden 
-    display: none 
+.hidden
+    display: none
 
 .radio
     position: relative
@@ -138,7 +139,7 @@ a.dracula
     width: 20px
     height: 20px
 
-.radio .label:after 
+.radio .label:after
     content: ''
     position: absolute
     top: 3px
@@ -152,31 +153,31 @@ a.dracula
     opacity: 0.08
     pointer-events: none
 
-.radio:hover .label:after 
+.radio:hover .label:after
     transform: scale(3.6)
 
-input[type="radio"]:checked + .label 
+input[type="radio"]:checked + .label
     border-color: #225cff
 
 
-input[type="radio"]:checked + .label:after 
+input[type="radio"]:checked + .label:after
     transform: scale(1)
     transition: all 0.2s cubic-bezier(0.35, 0.9, 0.4, 0.9)
     opacity: 1
 
-.cntr 
+.cntr
     position: absolute
     top: calc(50% - 10px)
     left: 0
     width: 100%
     text-align: center
 
-.hidden 
+.hidden
     display: none
 
-.toggle 
-    margin-top: 7px 
+.toggle
+    margin-top: 7px
     margin-bottom: 7px
 
-.radio-label 
+.radio-label
     font-size: 16px

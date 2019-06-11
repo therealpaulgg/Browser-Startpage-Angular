@@ -1,4 +1,4 @@
-<a href="#" class="settings-button" id="sbtn1" (click)="toggleSidebar()"
+<a class="settings-button" id="sbtn1" (click)="toggleSidebar()"
     [ngClass]="{dark: themeSetting == 'dark', light: themeSetting == 'light', dracula: themeSetting == 'dracula'}">
     <h3><i class="fa fa-bars" aria-hidden="true"></i></h3>
 </a>
@@ -7,7 +7,7 @@
     [ngClass]="{closed : isClosed, dark: themeSetting == 'dark', light: themeSetting == 'light', dracula: themeSetting == 'dracula'}"
     id="sidebar">
     <p>
-        <a href="#" class="settings-button" (click)="toggleSidebar()"><i class="fa fa-times" aria-hidden="true"></i></a>
+        <a class="settings-button" (click)="toggleSidebar()"><i class="fa fa-times" aria-hidden="true"></i></a>
     </p>
     <h3>Settings</h3>
     <hr id="bar">

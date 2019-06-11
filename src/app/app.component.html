@@ -1,27 +1,43 @@
 <div class="jumbotron jumbotron-fluid"
-    [ngClass]="{'dark' : themeSetting == 'dark', 'light' : themeSetting == 'light', 'dracula': themeSetting == 'dracula'}">
-    <app-sidebar></app-sidebar>
-    <div class="container">
-        <div class="centerme">
-            <div *ngIf="weatherLoaded == true && timeLoaded == true; else loading">
-                <h1>
-                    {{headerMessage}}
-                </h1>
-                <br>
-                <app-weather-display></app-weather-display>
-                <app-datetime></app-datetime>
-                <app-searchbar></app-searchbar>
-                <br>
-                <app-links></app-links>
-                <app-map></app-map>
+  [ngClass]="{'dark' : themeSetting == 'dark', 'light' : themeSetting == 'light', 'dracula': themeSetting == 'dracula'}">
+  <app-sidebar></app-sidebar>
+  <div class="container">
+    <div class="centerme">
+      <div *ngIf="weatherLoaded == true && timeLoaded == true; else loading">
+        <h1>
+          {{headerMessage}}
+        </h1>
+        <br>
+        <app-weather-display></app-weather-display>
+        <app-datetime></app-datetime>
+        <app-searchbar></app-searchbar>
+        <br>
+        <nav class="navbar navbar-expand-lg"
+          [ngClass]="{'dark' : themeSetting == 'dark', 'light' : themeSetting == 'light', 'dracula': themeSetting == 'dracula'}"
+          style="border-radius: 5px;">
+          <div class="container">
+            <a class="navbar-brand" routerLink="home">Menu</a>
+            <button class="navbar-toggler hidden-sm-up" type="button" (click)="isNavbarCollapsed = !isNavbarCollapsed"
+              aria-controls="exCollapsingNavbar2" aria-expanded="false" aria-label="Toggle navigation">
+              &#9776;
+            </button>
+            <div [ngbCollapse]="isNavbarCollapsed" class="collapse navbar-collapse" id="exCollapsingNavbar2">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item" routerLinkActive="active"><a class="nav-link" routerLink="links">Links</a></li>
+                <li class="nav-item" routerLinkActive="active"><a class="nav-link" routerLink="map">Map</a></li>
+              </ul>
             </div>
-            <ng-template #loading>
-                <h1>Loading...</h1>
-                <p>If you are experiencing issues loading, please ensure your API key is set properly in the key.json file.</p>
-            </ng-template>
-        </div>
+          </div>
+        </nav>
+        <br>
+        <router-outlet></router-outlet>
+        <!-- <app-links></app-links>
+                <app-map></app-map> -->
+      </div>
+      <ng-template #loading>
+        <h1>Loading...</h1>
+        <p>If you are experiencing issues loading, please ensure your API key is set properly in the key.json file.</p>
+      </ng-template>
     </div>
+  </div>
 </div>
-
-
-<router-outlet></router-outlet>

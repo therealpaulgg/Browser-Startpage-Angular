@@ -14,10 +14,36 @@
 <div *ngIf="places">
   <h3>Results</h3>
 </div>
-<div *ngFor="let place of places">
+<div *ngFor="let place of places"
+  [ngClass]="{light: themeSetting == 'light', dark: themeSetting == 'dark', dracula: themeSetting == 'dracula'}">
   <hr [ngClass]="{dark: themeSetting == 'dark', light: themeSetting == 'light', dracula: themeSetting == 'dracula'}">
   <h4>{{place.name}}</h4>
+  <div style="display: inline-block;" *ngFor="let star of place.stars">
+    <i *ngIf="!star.halfStar; else half" class="fas fa-star"></i>
+    <ng-template #half><i class="fas fa-star-half"></i></ng-template>
+  </div>
+  <p *ngIf="place.reviewCount" style="display: inline-block; padding-left: 10px"> ({{place.reviewCount}} reviews)</p>
+  <div>
+    <i *ngIf="place.open; else closed" class="fas fa-door-open"></i>
+    <ng-template #closed *ngIf="!place.open"><i class="fas fa-door-closed"></i></ng-template>
+  </div>
+  <div *ngFor="let day of place.hours; index as i" style="display: inline-block; padding-right: 10px;">
+    {{place.days[i]}}:
+    {{day.start.substr(0, 2)}}:{{day.start.substr(2, 2)}}-{{day.end.substr(0, 2)}}:{{day.end.substr(2, 2)}}
+  </div>
+  <div></div>
+  <div style="display: inline-block;" *ngFor="let transaction of place.transactions">
+    <div style="display: inline-block; padding-right: 10px;" [ngSwitch]="transaction">
+      <i *ngSwitchCase="'delivery'" class="fas fa-truck"></i>
+      <i *ngSwitchCase="'pickup'" class="fas fa-dolly"></i>
+      <i *ngSwitchCase="'restaurant_reservation'" class="fas fa-calendar-alt"></i>
+    </div>
+  </div>
   <p>{{place.address.formattedAddress}}</p>
   <p>{{place.phone}}</p>
-  <a [href]="place.website">{{place.website}}</a>
+  <a *ngIf="place.website" [href]="place.website" [attr.target]="newTab ? '_blank' : '_self'">{{place.website}}</a>
+  <br>
+  <a *ngIf="place.yelpsite" [href]="place.yelpsite" [attr.target]="newTab ? '_blank' : '_self'">Yelp Site</a>
+  <br>
+  <a [href]="'https://maps.google.com/maps?q=' + place.name + ',' + place.address.addressLine" [attr.target]="newTab ? '_blank' : '_self'">Google Maps Link</a>
 </div>
