@@ -14,19 +14,23 @@ export class SettingsService {
   bothDegrees: boolean
   themeSetting: string
   newTab: boolean
-  key: string
+  weatherAPIKey: string
+  bingAPIKey: string
+  yelpAPIKey: string
   searchEngine: string
   headerMessage: string
 
   constructor(@Inject(LOCAL_STORAGE) private storage: WebStorageService, private http: HttpClient) {
     this.tempSetting = this.storage.get("tempSetting") ? this.storage.get("tempSetting") : "celsius"
-    this.themeSetting = this.storage.get("themeSetting") ? this.storage.get("themeSetting") : "dark" 
-    this.bothDegrees = this.storage.get("bothDegrees") ? this.storage.get("bothDegrees") : false 
+    this.themeSetting = this.storage.get("themeSetting") ? this.storage.get("themeSetting") : "dark"
+    this.bothDegrees = this.storage.get("bothDegrees") ? this.storage.get("bothDegrees") : false
     this.newTab = this.storage.get("newTab") ? this.storage.get("newTab") : false
-    
+
     this.http.get<any>("assets/config/config.json").subscribe(obj => {
         this.headerMessage = obj.headerMessage
-        this.key = obj.key
+        this.weatherAPIKey = obj.weatherAPIKey
+        this.bingAPIKey = obj.bingAPIKey
+        this.yelpAPIKey = obj.yelpAPIKey
         this.searchEngine = obj.searchEngine
         this.next()
     })
@@ -36,9 +40,11 @@ export class SettingsService {
       bothDegrees: this.bothDegrees,
       newTab: this.newTab,
       themeSetting: this.themeSetting,
-      headerMessage: this.headerMessage, 
-      key: this.key,
-      searchEngine: this.searchEngine 
+      headerMessage: this.headerMessage,
+      weatherAPIKey: this.weatherAPIKey,
+      bingAPIKey: this.bingAPIKey,
+      yelpAPIKey: this.yelpAPIKey,
+      searchEngine: this.searchEngine
     })
 
 
@@ -46,10 +52,10 @@ export class SettingsService {
   // Settings are loaded from user's cookies (worry about this later)
   // Default settings are: celsius, both degrees off, and dark mode
 
-  /* 
+  /*
   * This service will communicate with the sidebar, initially setting
   * its boolean variables for radio buttons and switches.
-  *  
+  *
   * The service may then communicate with the weather component, so that only certain
   * things are displayed to the user.
   */
@@ -66,9 +72,11 @@ export class SettingsService {
       bothDegrees: this.bothDegrees,
       themeSetting: this.themeSetting,
       newTab: this.newTab,
-      headerMessage: this.headerMessage, 
-      key: this.key,
-      searchEngine: this.searchEngine 
+      headerMessage: this.headerMessage,
+      weatherAPIKey: this.weatherAPIKey,
+      bingAPIKey: this.bingAPIKey,
+      yelpAPIKey: this.yelpAPIKey,
+      searchEngine: this.searchEngine
     })
   }
 

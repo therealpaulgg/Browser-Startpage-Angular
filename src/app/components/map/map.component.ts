@@ -17,6 +17,8 @@ export class MapComponent implements OnInit {
 
   themeSetting: string
   searchInput: string
+  bingAPIKey: string
+  yelpAPIKey: string
   places: Array<any>
   map: any
   newTab: string
@@ -24,13 +26,15 @@ export class MapComponent implements OnInit {
   async ngOnInit() {
     this.settingsService.getSettings().subscribe(obj => {
       this.themeSetting = obj.themeSetting
+      this.bingAPIKey = obj.bingAPIKey
+      this.yelpAPIKey = obj.yelpAPIKey
       this.newTab = obj.newTab
     })
   }
 
   ngAfterViewInit() {
     this.map = new Microsoft.Maps.Map(this.myMap.nativeElement, {
-      credentials: "AmPeldhwmA9rt7hVuJZAb5eSnJmiU-YJxxw8QDoyhyVZBghurkl6NOHHcfrPT0y0",
+      credentials: this.bingAPIKey,
       showCopyright: false,
       showLogo: false,
       navigationBarMode: 1,
@@ -58,7 +62,7 @@ export class MapComponent implements OnInit {
 
   async onSubmit() {
     let bnds: Array<number> = this.map.getBounds().bounds
-    let data = await fetch(`https://dev.virtualearth.net/REST/v1/LocalSearch/?query=${this.searchInput}&userMapView=${bnds[2]},${bnds[3]},${bnds[0]},${bnds[1]}&key=AmPeldhwmA9rt7hVuJZAb5eSnJmiU-YJxxw8QDoyhyVZBghurkl6NOHHcfrPT0y0`)
+    let data = await fetch(`https://dev.virtualearth.net/REST/v1/LocalSearch/?query=${this.searchInput}&userMapView=${bnds[2]},${bnds[3]},${bnds[0]},${bnds[1]}&key=${this.bingAPIKey}`)
       .then(res => res.json())
     this.places = []
     let layer = new Microsoft.Maps.Layer()
@@ -71,7 +75,7 @@ export class MapComponent implements OnInit {
 
       } else {
         place.Address.addressLine = place.Address.addressLine.replace(/\./g, '')
-        let stuff = await fetch(`http://dev.virtualearth.net/REST/v1/Locations/US/${place.Address.adminDistrict}/${place.Address.postalCode}/${place.Address.locality}/${encodeURIComponent(place.Address.addressLine)}?maxResults=1&key=AmPeldhwmA9rt7hVuJZAb5eSnJmiU-YJxxw8QDoyhyVZBghurkl6NOHHcfrPT0y0`)
+        let stuff = await fetch(`http://dev.virtualearth.net/REST/v1/Locations/US/${place.Address.adminDistrict}/${place.Address.postalCode}/${place.Address.locality}/${encodeURIComponent(place.Address.addressLine)}?maxResults=1&key=${this.bingAPIKey}`)
           .then(res => res.json())
         coords = stuff.resourceSets[0].resources[0].geocodePoints[0].coordinates
         location = new Microsoft.Maps.Location(coords[0], coords[1])
@@ -82,9 +86,9 @@ export class MapComponent implements OnInit {
       layer.add(pin)
 
       // yelp calls for additional information
-      let yelpInit = await fetch(`https://fathomless-woodland-83451.herokuapp.com/getBusinessInformation?name=${place.name}&address1=${place.Address.addressLine}&city=${place.Address.locality}&state=${place.Address.adminDistrict}&country=US&limit=1`, {
+      let yelpInit = await fetch(`https://browser-startpage-server.herokuapp.com/getBusinessInformation?name=${place.name}&address1=${place.Address.addressLine}&city=${place.Address.locality}&state=${place.Address.adminDistrict}&country=US&limit=1`, {
         headers: new Headers({
-          "Authorization": "Bearer inVymaz66A7HdkIiuBm0VUtU2mYZdzWCfLv8xqSUF6jc3iutdcXVevMXRvV6q8lZPDSCcIxTUoyp0ozLydMI9p55i_Ee99KyLO3VwAU21nAzQl_gP35Fgo26cJfnW3Yx"
+          "Authorization": `Bearer ${this.yelpAPIKey}`
         })
       })
         .then(res => res.json())

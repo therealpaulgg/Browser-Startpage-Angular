@@ -18,12 +18,15 @@ def error_response(status_code, message=None):
 app = Flask(__name__)
 CORS(app)
 
-API_KEY = "inVymaz66A7HdkIiuBm0VUtU2mYZdzWCfLv8xqSUF6jc3iutdcXVevMXRvV6q8lZPDSCcIxTUoyp0ozLydMI9p55i_Ee99KyLO3VwAU21nAzQl_gP35Fgo26cJfnW3Yx"
+API_KEY = ""
 BASE_URL = "https://api.yelp.com/v3"
 
 @token_auth.verify_token
 def verify_token(token):
-  return token == API_KEY
+  if token is not None:
+    global API_KEY
+    API_KEY = token
+  return token is not None
 
 @token_auth.error_handler
 def token_auth_error():
