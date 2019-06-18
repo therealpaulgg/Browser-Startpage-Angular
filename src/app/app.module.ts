@@ -13,6 +13,7 @@ import { FormsModule } from '@angular/forms';
 import { StorageServiceModule } from 'angular-webstorage-service';
 import { MapComponent } from './components/map/map.component'
 import { RouteReuseStrategy, DetachedRouteHandle } from '@angular/router';
+import { APP_BASE_HREF } from '@angular/common';
 
 // Credit to this post for this solution
 // https://www.softwarearchitekt.at/post/2016/12/02/sticky-routes-in-angular-2-3-with-routereusestrategy.aspx
