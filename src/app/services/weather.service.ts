@@ -57,7 +57,7 @@ export class WeatherService {
                 locationStuff => this.settingsService.getSettings().pipe(
                     mergeMap(settings => {
                         // finally, we can make the call to the weather API.
-                        return this.http.get<WeatherInfo>(`https://api.openweathermap.org/data/2.5/weather?zip=${locationStuff.postal},${locationStuff.country_code}&units=metric&APPID=${settings.weatherAPIKey}`)
+                        return this.http.get<WeatherInfo>(`https://api.openweathermap.org/data/2.5/weather?lat=${locationStuff.latitude}&lon=${locationStuff.longitude}&units=metric&APPID=${settings.weatherAPIKey}`)
                     }
                     )
                 )
