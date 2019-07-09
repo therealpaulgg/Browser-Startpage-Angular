@@ -38,7 +38,7 @@ export class SearchbarComponent implements OnInit {
       let items = []
       res[1].forEach(item => items.push(item))
       items.forEach(item => {
-        let match = item.match(this.searchInput)
+        let match = item.match(this.searchInput.toLowerCase())
         if (match != null) {
           let index = match.index
           let first = item.substring(0, index)

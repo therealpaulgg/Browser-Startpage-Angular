@@ -11,3 +11,5 @@ The reason you need your own API key is because these APIs have limited amounts 
 I know the following two search engines work (use these URLS):
 https://duckduckgo.com
 https://google.com/search
+
+All autocomplete results are from google. Duckduckgo's endpoint will not work with angular.
