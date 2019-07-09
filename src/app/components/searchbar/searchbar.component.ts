@@ -32,18 +32,19 @@ export class SearchbarComponent implements OnInit {
     // had no choice but to simply use Google suggest queries. Win/loss because google censors some controversial
     // queries, but has more accurate results.
     // All of this is because CORS is to blame.
-    this.http.jsonp<Array<any>>(`https://suggestqueries.google.com/complete/search?q=${this.searchInput}&client=chrome&hl=fr`, "callback"
+    let input = encodeURIComponent(this.searchInput)
+    let uri = `https://suggestqueries.google.com/complete/search?q=${input}&client=chrome&hl=fr`
+    this.http.jsonp<Array<any>>(uri, "callback"
     ).subscribe(res => {
       this.dataService = []
       let items = []
       res[1].forEach(item => items.push(item))
       items.forEach(item => {
-        let match = item.match(this.searchInput.toLowerCase())
-        if (match != null) {
-          let index = match.index
+        let index = item.indexOf(this.searchInput.toLowerCase())
+        if (index != -1) {
           let first = item.substring(0, index)
-          let second = item.substring(index, index + match[0].length)
-          let third = item.substring(index + match[0].length,
+          let second = item.substring(index, index + this.searchInput.length)
+          let third = item.substring(index + this.searchInput.length,
             item.length)
           let part = []
           part.push(first)
