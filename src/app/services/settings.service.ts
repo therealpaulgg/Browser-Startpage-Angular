@@ -25,13 +25,13 @@ export class SettingsService {
     this.themeSetting = this.storage.get("themeSetting") ? this.storage.get("themeSetting") : "dark"
     this.bothDegrees = this.storage.get("bothDegrees") ? this.storage.get("bothDegrees") : false
     this.newTab = this.storage.get("newTab") ? this.storage.get("newTab") : false
+    this.searchEngine = this.storage.get("searchEngine") ? this.storage.get("searchEngine") : "https://duckduckgo.com"
 
     this.http.get<any>("assets/config/config.json").subscribe(obj => {
         this.headerMessage = obj.headerMessage
         this.weatherAPIKey = obj.weatherAPIKey
         this.bingAPIKey = obj.bingAPIKey
         this.yelpAPIKey = obj.yelpAPIKey
-        this.searchEngine = obj.searchEngine
         this.next()
     })
 
@@ -46,8 +46,6 @@ export class SettingsService {
       yelpAPIKey: this.yelpAPIKey,
       searchEngine: this.searchEngine
     })
-
-
   }
   // Settings are loaded from user's cookies (worry about this later)
   // Default settings are: celsius, both degrees off, and dark mode
@@ -80,15 +78,17 @@ export class SettingsService {
     })
   }
 
-  updateSettings(tempSetting, bothDegrees, themeSetting, newTab) {
+  updateSettings(tempSetting, bothDegrees, themeSetting, newTab, searchEngine) {
     this.tempSetting = tempSetting
     this.bothDegrees = bothDegrees
     this.newTab = newTab
     this.themeSetting = themeSetting
+    this.searchEngine = searchEngine
     this.storage.set("tempSetting", tempSetting)
     this.storage.set("bothDegrees", bothDegrees)
     this.storage.set("themeSetting", themeSetting)
     this.storage.set("newTab", newTab)
+    this.storage.set("searchEngine", searchEngine)
     this.next()
   }
 }

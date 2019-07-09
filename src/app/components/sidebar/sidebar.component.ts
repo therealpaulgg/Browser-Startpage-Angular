@@ -22,11 +22,23 @@ export class SidebarComponent implements OnInit {
       name: "Fahrenheit",
       value: "fahrenheit"
     }
-  ] 
+  ]
 
   bothDegrees: boolean
   newTab: boolean
-  
+
+  searchEngine: string
+  searchEngines = [
+    {
+      name: "Duck Duck Go",
+      value: "https://duckduckgo.com"
+    },
+    {
+      name: "Google",
+      value: "https://google.com/search"
+    }
+  ]
+
   themeSetting: string
   themeSettings = [
     {
@@ -36,7 +48,7 @@ export class SidebarComponent implements OnInit {
     {
       name: "Dark Mode",
       value: "dark"
-    }, 
+    },
     {
       name: "Dracula Theme",
       value: "dracula"
@@ -59,6 +71,7 @@ export class SidebarComponent implements OnInit {
       this.bothDegrees = settings.bothDegrees
       this.newTab = settings.newTab
       this.themeSetting = settings.themeSetting
+      this.searchEngine = settings.searchEngine
     })
   }
 
@@ -67,8 +80,7 @@ export class SidebarComponent implements OnInit {
   }
 
   settingsChange() {
-    console.log(`newtab: ${this.newTab}`)
-    this.settingsService.updateSettings(this.tempSetting, this.bothDegrees, this.themeSetting, this.newTab)
+    this.settingsService.updateSettings(this.tempSetting, this.bothDegrees, this.themeSetting, this.newTab, this.searchEngine)
   }
 
 }

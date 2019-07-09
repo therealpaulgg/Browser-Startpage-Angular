@@ -1,59 +1,73 @@
 <a class="settings-button" id="sbtn1" (click)="toggleSidebar()"
-    [ngClass]="{dark: themeSetting == 'dark', light: themeSetting == 'light', dracula: themeSetting == 'dracula'}">
-    <h3><i class="fa fa-bars" aria-hidden="true"></i></h3>
+  [ngClass]="{dark: themeSetting == 'dark', light: themeSetting == 'light', dracula: themeSetting == 'dracula'}">
+  <h3><i class="fa fa-bars" aria-hidden="true"></i></h3>
 </a>
 
 <div class="sidebar"
-    [ngClass]="{closed : isClosed, dark: themeSetting == 'dark', light: themeSetting == 'light', dracula: themeSetting == 'dracula'}"
-    id="sidebar">
-    <p>
-        <a class="settings-button" (click)="toggleSidebar()"><i class="fa fa-times" aria-hidden="true"></i></a>
-    </p>
-    <h3>Settings</h3>
-    <hr id="bar">
+  [ngClass]="{closed : isClosed, dark: themeSetting == 'dark', light: themeSetting == 'light', dracula: themeSetting == 'dracula'}"
+  id="sidebar">
+  <p>
+    <a class="settings-button" (click)="toggleSidebar()"><i class="fa fa-times" aria-hidden="true"></i></a>
+  </p>
+  <h3>Settings</h3>
+  <hr id="bar">
 
-    <!-- TEMPERATURE RADIO GROUP -->
-    <div class="radio-group">
-        <p class="radio-label">Degree Mode</p>
-        <label *ngFor="let item of tempSettings" [for]="item.name" class="radio">
-            <input type="radio" [(ngModel)]="tempSetting" name="degreegrp" value="{{item.value}}" id="{{item.name}}"
-                class="hidden" (change)="settingsChange()" />
-            <span class="label"></span>{{item.name}}
-        </label>
-    </div>
+  <!-- TEMPERATURE RADIO GROUP -->
+  <div class="radio-group">
+    <p class="radio-label">Degree Mode</p>
+    <label *ngFor="let item of tempSettings" [for]="item.name" class="radio">
+      <input type="radio" [(ngModel)]="tempSetting" name="degreegrp" value="{{item.value}}" id="{{item.name}}"
+        class="hidden" (change)="settingsChange()" />
+      <span class="label"></span>{{item.name}}
+    </label>
+  </div>
 
-    <!-- BOTH DEGREES TOGGLE-->
+  <!-- BOTH DEGREES TOGGLE-->
 
-    <div class="toggle">
-        <p class="settings-label">Both Degrees</p>
-        <input [(ngModel)]="bothDegrees" type="checkbox" class="cbx hidden" id="bothDegreesToggle"
-            (change)="settingsChange()" />
-        <label for="bothDegreesToggle" class="toggle-btn lbl"></label>
-    </div>
+  <div class="toggle">
+    <p class="settings-label">Both Degrees</p>
+    <input [(ngModel)]="bothDegrees" type="checkbox" class="cbx hidden" id="bothDegreesToggle"
+      (change)="settingsChange()" />
+    <label for="bothDegreesToggle" class="toggle-btn lbl"></label>
+  </div>
 
-    <!-- OPEN LINKS IN NEW TAB-->
+  <!-- OPEN LINKS IN NEW TAB-->
 
-    <div class="toggle">
-        <p class="settings-label">New Tab URLs</p>
-        <input [(ngModel)]="newTab" type="checkbox" class="cbx hidden" id="newTabToggle"
-            (change)="settingsChange()" />
-        <label for="newTabToggle" class="toggle-btn lbl"></label>
-    </div>
-
+  <div class="toggle">
+    <p class="settings-label">New Tab URLs</p>
+    <input [(ngModel)]="newTab" type="checkbox" class="cbx hidden" id="newTabToggle" (change)="settingsChange()" />
+    <label for="newTabToggle" class="toggle-btn lbl"></label>
+  </div>
 
 
-    <!-- THEME RADIO GROUP -->
 
-    <div class="radio-group">
-        <label *ngFor="let item of themeSettings; let i = index" [attr.data-index]="i" for="{{item.name}}"
-            class="radio">
-            <!-- stupid hack because i am sick of CSS-->
-            <div *ngIf="i == 0;">
-                <p>Theme</p>
-            </div>
-            <input type="radio" [(ngModel)]="themeSetting" name="themegrp" value="{{item.value}}" id="{{item.name}}"
-                class="hidden" (change)="settingsChange()" />
-            <span class="label"></span>{{item.name}}
-        </label>
-    </div>
+  <!-- THEME RADIO GROUP -->
+
+  <div class="radio-group">
+    <label *ngFor="let item of themeSettings; let i = index" [attr.data-index]="i" for="{{item.name}}" class="radio">
+      <!-- stupid hack because i am sick of CSS-->
+      <div *ngIf="i == 0;">
+        <p class="radio-label">Theme</p>
+      </div>
+      <input type="radio" [(ngModel)]="themeSetting" name="themegrp" value="{{item.value}}" id="{{item.name}}"
+        class="hidden" (change)="settingsChange()" />
+      <span class="label"></span>{{item.name}}
+    </label>
+  </div>
+
+  <!-- THEME RADIO GROUP -->
+  <br>
+
+  <div class="radio-group">
+    <label *ngFor="let item of searchEngines; let i = index" [attr.data-index]="i" for="{{item.name}}" class="radio">
+      <!-- stupid hack because i am sick of CSS-->
+      <div *ngIf="i == 0;">
+        <p class="radio-label">Search Engine</p>
+      </div>
+      <input type="radio" [(ngModel)]="searchEngine" name="enginegrp" value="{{item.value}}" id="{{item.name}}"
+        class="hidden" (change)="settingsChange()" />
+      <span class="label"></span>{{item.name}}
+    </label>
+  </div>
+
 </div>

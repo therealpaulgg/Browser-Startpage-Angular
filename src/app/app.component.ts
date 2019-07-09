@@ -24,7 +24,6 @@ export class AppComponent implements OnInit {
 
     ngOnInit() {
         this.settingsService.getSettings().subscribe(obj => {
-            console.log(obj.headerMessage)
             this.themeSetting = obj.themeSetting
             this.headerMessage = obj.headerMessage
         })

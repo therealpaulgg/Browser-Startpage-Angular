@@ -1,12 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { SettingsService } from 'src/app/services/settings.service';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-searchbar',
   templateUrl: './searchbar.component.html',
   styleUrls: ['./searchbar.component.sass']
 })
+
+
 
 export class SearchbarComponent implements OnInit {
   themeSetting: string
@@ -15,7 +17,7 @@ export class SearchbarComponent implements OnInit {
   searchInput: string
   dataService: Array<any>
 
-  constructor(private settingsService: SettingsService, private http: HttpClient) { }
+  constructor(private settingsService: SettingsService, private http: HttpClient, private _eref: ElementRef) { }
 
   ngOnInit() {
     this.settingsService.getSettings().subscribe(obj => {
@@ -23,17 +25,18 @@ export class SearchbarComponent implements OnInit {
       this.newTab = obj.newTab
       this.searchEngine = obj.searchEngine
     })
-    this.dataService = Array<any>()
   }
 
   autocomplete() {
-    const params = new HttpParams().set("q", this.searchInput)
-    this.http.get<Array<any>>("https://duckduckgo.com/ac", {
-      params
-    }).subscribe(res => {
+    // Tried for hours to use the endpoint https://duckduckgo.com/ac but because of angular limitations with JSONP,
+    // had no choice but to simply use Google suggest queries. Win/loss because google censors some controversial
+    // queries, but has more accurate results.
+    // All of this is because CORS is to blame.
+    this.http.jsonp<Array<any>>(`https://suggestqueries.google.com/complete/search?q=${this.searchInput}&client=chrome&hl=fr`, "callback"
+    ).subscribe(res => {
       this.dataService = []
       let items = []
-      res.forEach(item => items.push(item.phrase))
+      res[1].forEach(item => items.push(item))
       items.forEach(item => {
         let match = item.match(this.searchInput)
         if (match != null) {
@@ -58,7 +61,7 @@ export class SearchbarComponent implements OnInit {
   }
 
   suggestClicked(event) {
-    this.searchInput = event.target.innerText
+    this.searchInput = event.target.closest("p").innerText
     this.autocomplete()
   }
 }

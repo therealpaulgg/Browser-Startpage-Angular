@@ -17,7 +17,7 @@
   </div>
   <br>
   <div style="text-align: left;">
-    <div class="hoverpointer" (click)="suggestClicked($event)" style="display: inline-block; padding-right: 30px" *ngFor="let sug of dataService">
+    <div class="hoverpointer" (click)="suggestClicked($event)" #textdiv style="display: inline-block; padding-right: 30px" *ngFor="let sug of dataService">
       <p style="white-space: pre;" *ngIf="sug.length == 3">{{sug[0]}}<b style="text-decoration: underline;">{{sug[1]}}</b>{{sug[2]}}</p>
       <p style="white-space: pre;" *ngIf="sug.length == 1">{{sug[0]}}</p>
     </div>
