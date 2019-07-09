@@ -8,11 +8,18 @@
   <div class="input-group">
     <input autocomplete="off" class="form-control search-bar"
       [ngClass]="{dark: themeSetting == 'dark', light: themeSetting == 'light', dracula: themeSetting == 'dracula'}"
-      name="q" placeholder="search the web" type="searchEngine" [(ngModel)]="searchInput">
+      name="q" placeholder="search the web" type="searchEngine" [(ngModel)]="searchInput" (ngModelChange)="autocomplete()">
     <span class="input-group-btn">
       <button type="submit" class="btn"
         [ngClass]="{dark: themeSetting == 'dark', light: themeSetting == 'light', dracula: themeSetting == 'dracula'}"
-          [disabled]="!searchInput">Submit</button>
+        [disabled]="!searchInput">Submit</button>
     </span>
+  </div>
+  <br>
+  <div style="text-align: left;">
+    <div class="hoverpointer" (click)="suggestClicked($event)" style="display: inline-block; padding-right: 30px" *ngFor="let sug of dataService">
+      <p style="white-space: pre;" *ngIf="sug.length == 3">{{sug[0]}}<b style="text-decoration: underline;">{{sug[1]}}</b>{{sug[2]}}</p>
+      <p style="white-space: pre;" *ngIf="sug.length == 1">{{sug[0]}}</p>
+    </div>
   </div>
 </form>
