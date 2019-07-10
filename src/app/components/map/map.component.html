@@ -11,8 +11,15 @@
     </span>
   </div>
 </form>
-<div *ngIf="places">
+<div *ngIf="loaded">
   <h3>Results</h3>
+</div>
+<div *ngIf="submitted && !loaded">
+    <h3>Loading...</h3>
+</div>
+
+<div *ngIf="submitted && !loaded">
+    <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
 </div>
 <div *ngFor="let place of places"
   [ngClass]="{light: themeSetting == 'light', dark: themeSetting == 'dark', dracula: themeSetting == 'dracula'}">

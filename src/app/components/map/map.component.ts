@@ -19,9 +19,11 @@ export class MapComponent implements OnInit {
   searchInput: string
   bingAPIKey: string
   yelpAPIKey: string
-  places: Array<any>
+  places: Array<any> = []
   map: any
   newTab: string
+  submitted: boolean = false
+  loaded: boolean = false
 
   async ngOnInit() {
     this.settingsService.getSettings().subscribe(obj => {
@@ -61,6 +63,7 @@ export class MapComponent implements OnInit {
   }
 
   async onSubmit() {
+    this.submitted = true
     let bnds: Array<number> = this.map.getBounds().bounds
     let data = await fetch(`https://dev.virtualearth.net/REST/v1/LocalSearch/?query=${this.searchInput}&userMapView=${bnds[2]},${bnds[3]},${bnds[0]},${bnds[1]}&key=${this.bingAPIKey}`)
       .then(res => res.json())
@@ -133,5 +136,6 @@ export class MapComponent implements OnInit {
       }
     })
     this.map.layers.insert(layer)
+    this.loaded = true
   }
 }
