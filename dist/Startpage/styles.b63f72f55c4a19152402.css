@@ -1,4 +1,4 @@
-@import url(https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css);body,html{font-family:Hack;overflow:hidden;height:100%}.jumbotron{height:100%;padding-top:50px;padding-top--webkit-transition:.5s;transition:.5s}/*!
+@import url(https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css);body,html{font-family:Hack;overflow:hidden;height:100vh}.jumbotron{height:100vh;position:relative;padding-top:50px;padding-top--webkit-transition:.5s;transition:.5s;overflow-y:auto;overflow-x:hidden}.jumbotron::-webkit-scrollbar{width:10px}.jumbotron::-webkit-scrollbar-thumb{border-radius:10px;-webkit-box-shadow:inset 0 0 6px rgba(0,0,0,.3);background-color:#aaa}.jumbotron::-webkit-scrollbar-track{-webkit-box-shadow:inset 0 0 6px rgba(0,0,0,.3)}/*!
  *  Weather Icons 2.0
  *  Updated August 1, 2015
  *  Weather themed icons for Bootstrap
