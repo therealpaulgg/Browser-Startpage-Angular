@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, Injectable } from '@angular/core';
 import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,6 +18,7 @@ import { APP_BASE_HREF } from '@angular/common';
 // Credit to this post for this solution
 // https://www.softwarearchitekt.at/post/2016/12/02/sticky-routes-in-angular-2-3-with-routereusestrategy.aspx
 
+@Injectable()
 export class CustomReuseStrategy implements RouteReuseStrategy {
 
   handlers: {[key: string]: DetachedRouteHandle} = {}

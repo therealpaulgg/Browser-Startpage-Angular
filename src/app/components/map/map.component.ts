@@ -11,7 +11,7 @@ declare let Microsoft: any
 
 export class MapComponent implements OnInit {
 
-  @ViewChild("myMap", { static: false }) myMap
+  @ViewChild("myMap") myMap
 
   constructor(private settingsService: SettingsService, private http: HttpClient) { }
 
