@@ -63,14 +63,16 @@ export class MapComponent implements OnInit {
   }
 
   async onSubmit() {
+    this.loaded = false
     this.submitted = true
     let bnds: Array<number> = this.map.getBounds().bounds
     let data = await fetch(`https://dev.virtualearth.net/REST/v1/LocalSearch/?query=${this.searchInput}&userMapView=${bnds[2]},${bnds[3]},${bnds[0]},${bnds[1]}&key=${this.bingAPIKey}`)
       .then(res => res.json())
     this.places = []
+    let temp = []
     let layer = new Microsoft.Maps.Layer()
     let coords: any
-    data.resourceSets[0].resources.forEach(async place => {
+    for (const place of data.resourceSets[0].resources) {
       let location: any
       if (place.geocodePoints) {
         coords = place.geocodePoints[0].coordinates
@@ -111,7 +113,7 @@ export class MapComponent implements OnInit {
         stars.push({
           halfStar: halfStar
         })
-        this.places.push({
+        temp.push({
           name: place.name,
           address: place.Address,
           phone: place.PhoneNumber,
@@ -127,15 +129,16 @@ export class MapComponent implements OnInit {
           longitude: coords[1]
         })
       } else {
-        this.places.push({
+        temp.push({
           name: place.name,
           address: place.Address,
           phone: place.PhoneNumber,
           website: place.Website
         })
       }
-    })
-    this.map.layers.insert(layer)
+    }
+    this.places = temp
     this.loaded = true
+    this.map.layers.insert(layer)
   }
 }

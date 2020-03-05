@@ -5,7 +5,7 @@ import { MapComponent } from './components/map/map.component';
 
 const routes: Routes = [
   { path: "links", component: LinksComponent},
-  { path: "map", component: MapComponent},
+//   { path: "map", component: MapComponent},
   { path: "**", redirectTo: "links"}
 ];
 
