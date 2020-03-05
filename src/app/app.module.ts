@@ -11,7 +11,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SidebarComponent } from './components/sidebar/sidebar.component'
 import { FormsModule } from '@angular/forms';
 import { StorageServiceModule } from 'angular-webstorage-service';
-import { MapComponent } from './components/map/map.component'
 import { RouteReuseStrategy, DetachedRouteHandle } from '@angular/router';
 import { APP_BASE_HREF } from '@angular/common';
 
@@ -48,8 +47,7 @@ export class CustomReuseStrategy implements RouteReuseStrategy {
     DatetimeComponent,
     LinksComponent,
     SearchbarComponent,
-    SidebarComponent,
-    MapComponent
+    SidebarComponent
   ],
   imports: [
     NgbModule,

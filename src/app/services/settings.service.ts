@@ -15,8 +15,6 @@ export class SettingsService {
   themeSetting: string
   newTab: boolean
   weatherAPIKey: string
-  bingAPIKey: string
-  yelpAPIKey: string
   searchEngine: string
   headerMessage: string
 
@@ -30,8 +28,6 @@ export class SettingsService {
     this.http.get<any>("assets/config/config.json").subscribe(obj => {
         this.headerMessage = obj.headerMessage
         this.weatherAPIKey = obj.weatherAPIKey
-        this.bingAPIKey = obj.bingAPIKey
-        this.yelpAPIKey = obj.yelpAPIKey
         this.next()
     })
 
@@ -42,8 +38,6 @@ export class SettingsService {
       themeSetting: this.themeSetting,
       headerMessage: this.headerMessage,
       weatherAPIKey: this.weatherAPIKey,
-      bingAPIKey: this.bingAPIKey,
-      yelpAPIKey: this.yelpAPIKey,
       searchEngine: this.searchEngine
     })
   }
@@ -72,8 +66,6 @@ export class SettingsService {
       newTab: this.newTab,
       headerMessage: this.headerMessage,
       weatherAPIKey: this.weatherAPIKey,
-      bingAPIKey: this.bingAPIKey,
-      yelpAPIKey: this.yelpAPIKey,
       searchEngine: this.searchEngine
     })
   }
